@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Home from './component/Home';
+import Greet from './component/Greet';
+import Users from './component/Users';
+import NewUser from './component/NewUser';
+import Nav from './component/Nav';
+import { Route, Link } from 'react-router';
+import { useState } from 'react';
 
 function App() {
+  const {greet, setGreet} = useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <h1>Ello</h1> */}
+      {/* <Home /> */}
+      <div>
+      <Nav />
+      </div>
+      <Route 
+      exact path="/" 
+      component={Home} 
+      />
+      <Route 
+      exact path="/Users" 
+      component={Users} 
+      />
+      <Route 
+      exact path="/users/new" 
+      component={NewUser} 
+      />
+      <Route
+      path="/greet/:param"
+      render={(routerProps) => 
+      <Greet match={routerProps.match}
+      />}
+      />
     </div>
   );
 }
